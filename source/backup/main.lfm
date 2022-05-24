@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = -23
-  Height = 795
-  Top = 176
-  Width = 1918
+  Left = -9
+  Height = 991
+  Top = -9
+  Width = 1920
   Caption = 'Animasi Kembang Api'
-  ClientHeight = 770
-  ClientWidth = 1918
+  ClientHeight = 966
+  ClientWidth = 1920
   DesignTimePPI = 120
   Menu = MainMenu1
   OnCreate = FormCreate

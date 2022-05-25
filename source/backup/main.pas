@@ -19,6 +19,7 @@ type
     Button4: TButton;
     Button5: TButton;
     Button6: TButton;
+    Button7: TButton;
     CheckBox1: TCheckBox;
     ColorBox1: TColorBox;
     ColorBox2: TColorBox;

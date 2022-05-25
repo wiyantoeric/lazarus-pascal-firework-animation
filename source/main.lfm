@@ -385,4 +385,8 @@ object Form1: TForm1
     Left = 90
     Top = 576
   end
+  object Timer1: TTimer
+    Left = 24
+    Top = 528
+  end
 end

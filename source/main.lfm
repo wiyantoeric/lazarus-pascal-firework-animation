@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 697
+  Left = 389
   Height = 599
-  Top = 96
-  Width = 466
+  Top = 142
+  Width = 924
   Caption = 'Animasi Kembang Api'
   ClientHeight = 599
-  ClientWidth = 466
+  ClientWidth = 924
   OnCreate = FormCreate
   LCLVersion = '2.2.0.1'
   Visible = True
@@ -28,12 +28,13 @@ object Form1: TForm1
       AutoSize = True
     end
   end
-  object Button1: TButton
+  object buttonPlay: TButton
     Left = 506
     Height = 25
     Top = 486
     Width = 75
     Caption = 'Play'
+    OnClick = buttonPlayClick
     ParentFont = False
     TabOrder = 1
   end
@@ -52,9 +53,9 @@ object Form1: TForm1
     Height = 413
     Top = 58
     Width = 288
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = 'Background'
@@ -386,6 +387,7 @@ object Form1: TForm1
     Top = 576
   end
   object Timer1: TTimer
+    OnTimer = Timer1Timer
     Left = 24
     Top = 528
   end

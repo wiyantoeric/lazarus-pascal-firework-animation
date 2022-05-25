@@ -6,14 +6,15 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, Menus,
-  ExtDlgs, StdCtrls, Buttons, ComCtrls, ColorBox, ActnList;
+  ExtDlgs, StdCtrls, Buttons, ComCtrls, ColorBox, ActnList,
+  FileUtil;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
+    buttonPlay: TButton;
     Button2: TButton;
     Button3: TButton;
     Button4: TButton;
@@ -60,9 +61,13 @@ type
     TrackBar1: TTrackBar;
     TrackBar2: TTrackBar;
     TrackBar3: TTrackBar;
+    procedure buttonPlayClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure MenuItemScreenshotClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
+
+
   private
 
   public
@@ -77,6 +82,9 @@ implementation
 {$R *.lfm}
 
 { TForm1 }
+var
+  x, y : integer;
+  Ty   : integer;
 
 procedure TForm1.TrayIcon1Click(Sender: TObject);
 begin
@@ -86,6 +94,7 @@ end;
 procedure TForm1.FormCreate(Sender: TObject);
 var
   i, j : integer;
+
 begin
   image1.Canvas.brush.color := clWhite;
   image2.Canvas.brush.color := clWhite;
@@ -96,12 +105,47 @@ begin
   Image2.Canvas.FillRect(0, 0, Image2.Canvas.Width, Image2.Canvas.Height);
   Image3.Canvas.FillRect(0, 0, Image3.Canvas.Width, Image3.Canvas.Height);  
   Image3.Canvas.FillRect(0, 0, Image3.Canvas.Width, Image3.Canvas.Height);
+  x  := image1.Width div 2;
+  y  := image1.Height;
+  Ty := -50;
+  image1.Canvas.Pen.Color:=clWhite;
+  image1.Canvas.Brush.Color:=clWhite;
+  image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
+  Timer1.Enabled := false;
+end;
 
+procedure TForm1.buttonPlayClick(Sender: TObject);
+begin
+  Timer1.Enabled := true;
+  Timer1Timer(Sender);
 end;
 
 procedure TForm1.MenuItemScreenshotClick(Sender: TObject);
 begin
 
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  y := y + Ty;
+  //hapus
+  Image1.Canvas.Brush.Color := clWhite;
+  Image1.Canvas.Pen.Color := clWhite;
+  image1.Canvas.Pen.Style := psSolid;
+  image1.Canvas.Ellipse(x,y - 25 + 50,x + 20,y + 25 + 50);
+  //gambar grafik
+  image1.Canvas.Brush.Color := clBlack;
+  image1.Canvas.Pen.Color := clBlack;
+  image1.Canvas.Pen.Style := psSolid;
+  image1.Canvas.Ellipse(x,y - 25,x + 20,y + 25);
+
+  if y <= 150 then
+  begin
+    y  := image1.Height;
+    Image1.Canvas.Pen.Color:=clWhite;
+    Image1.Canvas.Brush.Color:=clWhite;
+    Image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
+  end;
 end;
 
 end.

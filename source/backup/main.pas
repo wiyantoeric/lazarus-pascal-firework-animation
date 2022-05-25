@@ -14,6 +14,7 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
     buttonPlay: TButton;
     Button2: TButton;
     Button3: TButton;
@@ -55,16 +56,17 @@ type
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     Timer1: TTimer;
+    TimerExplosion: TTimer;
     TrackBar1: TTrackBar;
     TrackBar2: TTrackBar;
     TrackBar3: TTrackBar;
     procedure buttonPlayClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure MenuItemScreenshotClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure TrayIcon1Click(Sender: TObject);
 
-
+    procedure FireworkExplosion();
+    procedure ClearCanvas();
+    procedure TimerExplosionTimer(Sender: TObject);
   private
 
   public
@@ -79,9 +81,14 @@ implementation
 {$R *.lfm}
 
 { TForm1 }
+
+uses
+  Math, Windows;
+
 var
   x, y : integer;
   Ty   : integer;
+  ExplosionLoop : Integer = 30;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -112,7 +119,6 @@ begin
   Timer1Timer(Sender);
 end;
 
-
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
   y := y + Ty;
@@ -134,6 +140,55 @@ begin
     Image1.Canvas.Brush.Color:=clWhite;
     Image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
   end;
+end;
+
+procedure TForm1.FireworkExplosion();
+begin
+  TimerExplosion.Enabled := True;
+end;
+
+procedure TForm1.ClearCanvas();
+begin
+  Image1.Canvas.Brush.Ccolor := clWhite;
+  Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
+  Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
+end;
+
+procedure TForm1.TimerExplosionTimer(Sender: TObject);
+type
+  Particle = record
+    X, Y : Integer;
+    Radius, Rotation, Gravity, YVelocity : Single;
+    Color : array [0..2] of Integer;
+  end;
+
+var
+  Particles : array [0..19] of Particle;
+  MidX, MidY : Integer;
+  i, j : Integer;
+
+begin
+  MidX := Image1.Canvas.Width div 2;
+  MidY := Image1.Canvas.Height div 2;
+
+  ClearCanvas();
+                        
+//  TODO : Create explosion animation.
+
+//  Testing ...
+  for i:=0 to 20 do
+  begin
+    for j:=0 to 20 do
+    begin
+      Image1.Canvas.Pixels[ExplosionLoop+i,ExplosionLoop+j] := RGB(0,0,0);
+    end;
+  end;
+
+
+  ExplosionLoop += 2;
+
+  if ExplosionLoop = 30 then TimerExplosion.Enabled := False;
+//  ... TTimer.
 end;
 
 end.

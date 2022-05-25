@@ -35,6 +35,7 @@ object Form1: TForm1
     Top = 608
     Width = 94
     Caption = 'Play'
+    OnClick = buttonPlayClick
     ParentFont = False
     TabOrder = 1
   end
@@ -402,5 +403,10 @@ object Form1: TForm1
   object Timer1: TTimer
     Left = 30
     Top = 660
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 24
+    Top = 528
   end
 end

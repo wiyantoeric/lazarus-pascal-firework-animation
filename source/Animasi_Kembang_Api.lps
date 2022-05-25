@@ -2,7 +2,7 @@
 <CONFIG>
   <ProjectSession>
     <PathDelim Value="\"/>
-    <Version Value="11"/>
+    <Version Value="12"/>
     <BuildModes Active="Default"/>
     <Units Count="3">
       <Unit0>
@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="24"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -43,19 +43,19 @@
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="71" Column="37" TopLine="51"/>
+        <Caret Line="119" Column="19" TopLine="111"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="72" Column="37" TopLine="52"/>
+        <Caret Line="109" Column="9" TopLine="107"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="73" Column="37" TopLine="53"/>
+        <Caret Line="126" Column="51" TopLine="112"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="74" Column="37" TopLine="54"/>
+        <Caret Line="119" Column="19" TopLine="105"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
@@ -160,7 +160,18 @@
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
-      <Modes Count="0" ActiveMode=""/>
+      <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="main.pas"/>
+        <Line Value="70"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>

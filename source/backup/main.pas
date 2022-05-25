@@ -45,9 +45,6 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    MainMenu1: TMainMenu;
-    MenuItemFile: TMenuItem;
-    MenuItemScreenshot: TMenuItem;
     OpenPictureDialog1: TOpenPictureDialog;
     PageControl2: TPageControl;
     SavePictureDialog1: TSavePictureDialog;
@@ -56,12 +53,13 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    Timer1: TTimer;
     TrackBar1: TTrackBar;
     TrackBar2: TTrackBar;
     TrackBar3: TTrackBar;
     procedure FormCreate(Sender: TObject);
-    procedure MenuItemScreenshotClick(Sender: TObject);
-    procedure TrayIcon1Click(Sender: TObject);
+    procedure FireworkExplosion();
+
   private
 
   public
@@ -77,7 +75,7 @@ implementation
 
 { TForm1 }
 
-procedure TForm1.TrayIcon1Click(Sender: TObject);
+procedure TForm1.FireworkExplosion();
 begin
 
 end;
@@ -98,10 +96,6 @@ begin
 
 end;
 
-procedure TForm1.MenuItemScreenshotClick(Sender: TObject);
-begin
-
-end;
 
 end.
 

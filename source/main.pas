@@ -60,9 +60,7 @@ type
     TrackBar3: TTrackBar;
     procedure buttonPlayClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure MenuItemScreenshotClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure TrayIcon1Click(Sender: TObject);
 
 
   private

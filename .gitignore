@@ -11,3 +11,8 @@ source/lib/x86_64-win64/Animasi_Kembang_Api.obj
 source/lib/x86_64-win64/Animasi_Kembang_Api.o
 source/backup/main.pas
 source/main.lfm
+*.lfm
+*.exe
+*.lpi
+*.lps
+*.res

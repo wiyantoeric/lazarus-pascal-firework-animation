@@ -60,7 +60,6 @@ type
     TrackBar3: TTrackBar;
     procedure buttonPlayClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure FireworkExplosion();
     procedure MenuItemScreenshotClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure TrayIcon1Click(Sender: TObject);
@@ -84,11 +83,6 @@ var
   x, y : integer;
   Ty   : integer;
 
-procedure TForm1.FireworkExplosion();
-begin
-
-end;
-
 procedure TForm1.FormCreate(Sender: TObject);
 var
   i, j : integer;
@@ -109,6 +103,7 @@ begin
   image1.Canvas.Pen.Color:=clWhite;
   image1.Canvas.Brush.Color:=clWhite;
   image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
+  Timer1.Enabled := false;
 end;
 
 procedure TForm1.buttonPlayClick(Sender: TObject);
@@ -120,7 +115,6 @@ end;
 
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
-  Timer1.Enabled := false;
   y := y + Ty;
   //hapus
   Image1.Canvas.Brush.Color := clWhite;

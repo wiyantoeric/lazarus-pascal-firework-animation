@@ -1,13 +1,12 @@
 object Form1: TForm1
-  Left = -23
-  Height = 795
-  Top = 176
-  Width = 1918
+  Left = 1074
+  Height = 749
+  Top = 85
+  Width = 582
   Caption = 'Animasi Kembang Api'
-  ClientHeight = 770
-  ClientWidth = 1918
+  ClientHeight = 749
+  ClientWidth = 582
   DesignTimePPI = 120
-  Menu = MainMenu1
   OnCreate = FormCreate
   LCLVersion = '2.0.12.0'
   Visible = True
@@ -20,6 +19,7 @@ object Form1: TForm1
     VertScrollBar.Page = 537
     ClientHeight = 544
     ClientWidth = 1412
+    ParentFont = False
     TabOrder = 0
     object Image1: TImage
       Left = 0
@@ -35,6 +35,7 @@ object Form1: TForm1
     Top = 608
     Width = 94
     Caption = 'Play'
+    ParentFont = False
     TabOrder = 1
   end
   object Button2: TButton
@@ -44,6 +45,7 @@ object Form1: TForm1
     Width = 94
     Caption = 'Pause'
     Enabled = False
+    ParentFont = False
     TabOrder = 2
   end
   object PageControl2: TPageControl
@@ -52,18 +54,21 @@ object Form1: TForm1
     Top = 72
     Width = 360
     ActivePage = TabSheet1
+    ParentFont = False
     TabIndex = 0
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = 'Background'
       ClientHeight = 483
       ClientWidth = 352
+      ParentFont = False
       object ColorBox1: TColorBox
         Left = 32
         Height = 26
         Top = 152
         Width = 290
         ItemHeight = 20
+        ParentFont = False
         TabOrder = 0
       end
       object Button3: TButton
@@ -72,6 +77,7 @@ object Form1: TForm1
         Top = 264
         Width = 114
         Caption = 'Load'
+        ParentFont = False
         TabOrder = 1
       end
       object Button4: TButton
@@ -80,6 +86,7 @@ object Form1: TForm1
         Top = 416
         Width = 94
         Caption = 'Apply'
+        ParentFont = False
         TabOrder = 2
       end
       object Label1: TLabel
@@ -89,20 +96,23 @@ object Form1: TForm1
         Width = 101
         Caption = 'Color Selection'
         ParentColor = False
+        ParentFont = False
       end
       object Label2: TLabel
         Left = 32
         Height = 20
-        Top = 267
+        Top = 268
         Width = 162
         Caption = 'Load Background Image'
         ParentColor = False
+        ParentFont = False
       end
       object Edit1: TEdit
-        Left = 33
+        Left = 32
         Height = 28
         Top = 64
         Width = 100
+        ParentFont = False
         TabOrder = 3
         TextHint = '#FFFFFF'
       end
@@ -113,6 +123,7 @@ object Form1: TForm1
         Width = 36
         Caption = 'Color'
         ParentColor = False
+        ParentFont = False
       end
       object Image2: TImage
         Left = 152
@@ -123,8 +134,9 @@ object Form1: TForm1
     end
     object TabSheet2: TTabSheet
       Caption = 'Firework'
-      ClientHeight = 483
-      ClientWidth = 352
+      ClientHeight = 385
+      ClientWidth = 280
+      ParentFont = False
       object TrackBar1: TTrackBar
         Left = 32
         Height = 31
@@ -132,15 +144,17 @@ object Form1: TForm1
         Width = 256
         Max = 100
         Position = 50
+        ParentFont = False
         TabOrder = 0
       end
       object Label4: TLabel
         Left = 294
-        Height = 20
+        Height = 15
         Top = 64
-        Width = 28
+        Width = 22
         Caption = '50%'
         ParentColor = False
+        ParentFont = False
       end
       object ColorBox2: TColorBox
         Left = 32
@@ -148,53 +162,60 @@ object Form1: TForm1
         Top = 216
         Width = 290
         ItemHeight = 20
+        ParentFont = False
         TabOrder = 1
       end
       object Label5: TLabel
         Left = 32
-        Height = 20
+        Height = 15
         Top = 192
-        Width = 101
+        Width = 80
         Caption = 'Color Selection'
         ParentColor = False
+        ParentFont = False
       end
       object Edit2: TEdit
-        Left = 33
-        Height = 28
+        Left = 32
+        Height = 23
         Top = 144
         Width = 100
+        ParentFont = False
         TabOrder = 2
         TextHint = '#FFFFFF'
       end
       object Label6: TLabel
         Left = 32
-        Height = 20
+        Height = 15
         Top = 120
-        Width = 36
+        Width = 29
         Caption = 'Color'
         ParentColor = False
+        ParentFont = False
       end
       object Label7: TLabel
         Left = 32
-        Height = 20
+        Height = 15
         Top = 40
-        Width = 54
+        Width = 44
         Caption = 'Particles'
         ParentColor = False
+        ParentFont = False
       end
       object Label8: TLabel
         Left = 32
-        Height = 20
+        Height = 15
         Top = 272
-        Width = 42
+        Width = 33
         Caption = 'Range'
         ParentColor = False
+        ParentFont = False
       end
       object Edit3: TEdit
-        Left = 33
-        Height = 28
+        Left = 32
+        Height = 23
         Top = 296
-        Width = 103
+        Width = 102
+        ParentFont = False
         TabOrder = 3
         TextHint = '0 - 1000px'
       end
@@ -204,6 +225,7 @@ object Form1: TForm1
         Top = 416
         Width = 94
         Caption = 'Apply'
+        ParentFont = False
         TabOrder = 4
       end
       object Image3: TImage
@@ -217,12 +239,14 @@ object Form1: TForm1
       Caption = 'Animation'
       ClientHeight = 483
       ClientWidth = 352
+      ParentFont = False
       object Button6: TButton
         Left = 228
         Height = 31
         Top = 416
         Width = 94
         Caption = 'Apply'
+        ParentFont = False
         TabOrder = 0
       end
       object ComboBox1: TComboBox
@@ -238,6 +262,7 @@ object Form1: TForm1
           '1.5x'
           '2x'
         )
+        ParentFont = False
         TabOrder = 1
         Text = '1x'
       end
@@ -248,6 +273,7 @@ object Form1: TForm1
         Width = 42
         Caption = 'Speed'
         ParentColor = False
+        ParentFont = False
       end
       object TrackBar2: TTrackBar
         Left = 32
@@ -256,6 +282,7 @@ object Form1: TForm1
         Width = 200
         Max = 5
         Position = 2
+        ParentFont = False
         TabOrder = 2
       end
       object Edit4: TEdit
@@ -263,6 +290,7 @@ object Form1: TForm1
         Height = 28
         Top = 156
         Width = 44
+        ParentFont = False
         TabOrder = 3
         Text = '2000'
         TextHint = '0 miliseconds'
@@ -274,6 +302,7 @@ object Form1: TForm1
         Width = 96
         Caption = 'Explode Delay'
         ParentColor = False
+        ParentFont = False
       end
       object Label11: TLabel
         Left = 288
@@ -282,6 +311,7 @@ object Form1: TForm1
         Width = 19
         Caption = 'ms'
         ParentColor = False
+        ParentFont = False
       end
       object Label12: TLabel
         Left = 288
@@ -290,6 +320,7 @@ object Form1: TForm1
         Width = 19
         Caption = 'ms'
         ParentColor = False
+        ParentFont = False
       end
       object TrackBar3: TTrackBar
         Left = 32
@@ -298,6 +329,7 @@ object Form1: TForm1
         Width = 200
         Max = 5
         Position = 2
+        ParentFont = False
         TabOrder = 4
       end
       object Edit5: TEdit
@@ -305,6 +337,7 @@ object Form1: TForm1
         Height = 28
         Top = 248
         Width = 44
+        ParentFont = False
         TabOrder = 5
         Text = '2000'
         TextHint = '0 miliseconds'
@@ -316,6 +349,7 @@ object Form1: TForm1
         Width = 111
         Caption = 'Animation Delay'
         ParentColor = False
+        ParentFont = False
       end
     end
   end
@@ -325,6 +359,7 @@ object Form1: TForm1
     Top = 41
     Width = 81
     Caption = 'Settings'
+    ParentFont = False
     TabOrder = 4
   end
   object CheckBox1: TCheckBox
@@ -333,26 +368,28 @@ object Form1: TForm1
     Top = 615
     Width = 140
     Caption = 'Firework Take Off'
+    ParentFont = False
     TabOrder = 5
   end
-  object MainMenu1: TMainMenu
-    Left = 24
-    Top = 720
-    object MenuItemFile: TMenuItem
-      Caption = 'File'
-      object MenuItemScreenshot: TMenuItem
-        Caption = 'Screenshoot'
-        ShortCut = 16467
-        OnClick = MenuItemScreenshotClick
-      end
-    end
+  object Button7: TButton
+    Left = 960
+    Height = 31
+    Top = 608
+    Width = 94
+    Caption = 'Screenshot'
+    ParentFont = False
+    TabOrder = 6
   end
   object SavePictureDialog1: TSavePictureDialog
-    Left = 64
+    Left = 30
     Top = 720
   end
   object OpenPictureDialog1: TOpenPictureDialog
-    Left = 112
+    Left = 79
+    Top = 720
+  end
+  object Timer1: TTimer
+    Left = 136
     Top = 720
   end
 end

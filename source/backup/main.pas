@@ -14,40 +14,31 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
+    Button_Play: TButton;
     buttonPlay: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    Button6: TButton;
-    Button7: TButton;
-    CheckBox1: TCheckBox;
-    ColorBox1: TColorBox;
-    ColorBox2: TColorBox;
+    Button_Pause: TButton;
+    Button_BgApply: TButton;
+    Button_FireApply: TButton;
+    Button_AnimApply: TButton;
+    Button_Screenshot: TButton;
+    CheckBox_TakeOff: TCheckBox;
+    ColorBox_BgColor: TColorBox;
+    ColorBox_FrColor: TColorBox;
     ComboBox1: TComboBox;
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Edit3: TEdit;
     Edit4: TEdit;
     Edit5: TEdit;
     Image1: TImage;
-    Image2: TImage;
-    Image3: TImage;
     Label1: TLabel;
     Label10: TLabel;
     Label11: TLabel;
     Label12: TLabel;
     Label13: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    OpenPictureDialog1: TOpenPictureDialog;
     PageControl2: TPageControl;
     SavePictureDialog1: TSavePictureDialog;
     ScrollBox1: TScrollBox;
@@ -57,16 +48,28 @@ type
     TabSheet3: TTabSheet;
     Timer1: TTimer;
     TimerExplosion: TTimer;
-    TrackBar1: TTrackBar;
-    TrackBar2: TTrackBar;
-    TrackBar3: TTrackBar;
+    TrackBar_Particle: TTrackBar;
+    TrackBar_Range: TTrackBar;
+    TrackBar_Ex_Delay: TTrackBar;
+    TrackBar_Anim_Delay: TTrackBar;
+    procedure Button_PauseClick(Sender: TObject);
+    procedure Button_ScreenshotClick(Sender: TObject);
+    procedure Button_AnimApplyClick(Sender: TObject);
+    procedure Button_FireApplyClick(Sender: TObject);
+    procedure Button_BgApplyClick(Sender: TObject);
     procedure buttonPlayClick(Sender: TObject);
+    procedure CheckBox_TakeOffChange(Sender: TObject);
+    procedure ColorBox_FrColorChange(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Label6Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
 
     procedure FireworkExplosion();
     procedure ClearCanvas();
     procedure TimerExplosionTimer(Sender: TObject);
+    procedure TrackBar_RangeChange(Sender: TObject);
+    procedure TrackBar_ParticleChange(Sender: TObject);
   private
 
   public
@@ -89,6 +92,14 @@ var
   x, y : integer;
   Ty   : integer;
   ExplosionLoop : Integer = 30;
+  BgColor : string = 'clNavy';
+  Particle : integer = 50;
+  FrColor : string = 'clYellow';
+  Range : integer = 50 ;
+  Speed : integer = 1;
+  Ex_Delay : integer = 500;
+  Anim_Delay : integer = 500;
+  TakeOff : boolean = True;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -96,14 +107,8 @@ var
 
 begin
   image1.Canvas.brush.color := clWhite;
-  image2.Canvas.brush.color := clWhite;
-  image3.Canvas.brush.color := clWhite;
   Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height); 
   Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
-  Image2.Canvas.FillRect(0, 0, Image2.Canvas.Width, Image2.Canvas.Height);
-  Image2.Canvas.FillRect(0, 0, Image2.Canvas.Width, Image2.Canvas.Height);
-  Image3.Canvas.FillRect(0, 0, Image3.Canvas.Width, Image3.Canvas.Height);  
-  Image3.Canvas.FillRect(0, 0, Image3.Canvas.Width, Image3.Canvas.Height);
   x  := image1.Width div 2;
   y  := image1.Height;
   Ty := -50;
@@ -111,6 +116,12 @@ begin
   image1.Canvas.Brush.Color:=clWhite;
   image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
   Timer1.Enabled := false;
+
+end;
+
+procedure TForm1.Label6Click(Sender: TObject);
+begin
+
 end;
 
 procedure TForm1.buttonPlayClick(Sender: TObject);
@@ -119,27 +130,77 @@ begin
   Timer1Timer(Sender);
 end;
 
+procedure TForm1.CheckBox_TakeOffChange(Sender: TObject);
+begin
+  TakeOff := CheckBox_TakeOff.Checked;
+end;
+
+procedure TForm1.ColorBox_FrColorChange(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Button_BgApplyClick(Sender: TObject);
+begin
+  Image1.Canvas.Brush.Color := ColorBox_BgColor.Selected;
+  Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
+  Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
+end;
+
+procedure TForm1.Button_FireApplyClick(Sender: TObject);
+begin
+  Particle := TrackBar_Particle.Position;
+  FrColor := ColorBox_FrColor.Text;
+  Range := TrackBar_Range.Position;
+end;
+
+procedure TForm1.Button_AnimApplyClick(Sender: TObject);
+begin
+  Speed := ComboBox1.ItemIndex;
+  Ex_Delay := TrackBar_Ex_Delay.Position;
+  Anim_Delay := TrackBar_Anim_Delay.Position;
+end;
+
+procedure TForm1.Button_ScreenshotClick(Sender: TObject);
+begin
+  Button_Pause.Enabled := False;
+  Button_Play.Enabled := True;
+  Button_PauseClick(nil);
+  if SavePictureDialog1.Execute then
+  begin
+    image1.Picture.SaveToFile(SavePictureDialog1.FileName);
+  end;
+end;
+
+procedure TForm1.Button_PauseClick(Sender: TObject);
+begin
+   Timer1.Enabled := False;
+end;
+
+procedure TForm1.Edit3Change(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
-  y := y + Ty;
-  //hapus
-  Image1.Canvas.Brush.Color := clWhite;
-  Image1.Canvas.Pen.Color := clWhite;
-  image1.Canvas.Pen.Style := psSolid;
-  image1.Canvas.Ellipse(x,y - 25 + 50,x + 20,y + 25 + 50);
-  //gambar grafik
-  image1.Canvas.Brush.Color := clBlack;
-  image1.Canvas.Pen.Color := clBlack;
-  image1.Canvas.Pen.Style := psSolid;
-  image1.Canvas.Ellipse(x,y - 25,x + 20,y + 25);
+  Button_BgApplyClick(nil);
+  if TakeOff then
+    y := y + Ty;
+    //gambar grafik
+    image1.Canvas.Brush.Color := clBlack;
+    image1.Canvas.Pen.Color := clBlack;
+    image1.Canvas.Pen.Style := psSolid;
+    image1.Canvas.Ellipse(x,y - 25,x + 20,y + 25);
 
-  if y <= 150 then
-  begin
-    y  := image1.Height;
-    Image1.Canvas.Pen.Color:=clWhite;
-    Image1.Canvas.Brush.Color:=clWhite;
-    Image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
-  end;
+    if y <= 150 then
+    begin
+      y  := image1.Height;
+      Button_BgApplyClick(nil);
+    end;
+
+
+
 end;
 
 procedure TForm1.FireworkExplosion();
@@ -149,7 +210,7 @@ end;
 
 procedure TForm1.ClearCanvas();
 begin
-  Image1.Canvas.Brush.Ccolor := clWhite;
+  Image1.Canvas.Brush.Color := ColorBox_BgColor.Selected;
   Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
   Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
 end;
@@ -171,7 +232,7 @@ begin
   MidX := Image1.Canvas.Width div 2;
   MidY := Image1.Canvas.Height div 2;
 
-  ClearCanvas();
+
                         
 //  TODO : Create explosion animation.
 
@@ -189,6 +250,16 @@ begin
 
   if ExplosionLoop = 30 then TimerExplosion.Enabled := False;
 //  ... TTimer.
+end;
+
+procedure TForm1.TrackBar_RangeChange(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.TrackBar_ParticleChange(Sender: TObject);
+begin
+
 end;
 
 end.

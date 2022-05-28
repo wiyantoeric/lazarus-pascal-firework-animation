@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 153
+  Left = 256
   Height = 766
-  Top = 92
+  Top = 205
   Width = 1713
   Caption = 'Animasi Kembang Api'
   ClientHeight = 766
@@ -55,9 +55,9 @@ object Form1: TForm1
     Height = 516
     Top = 69
     Width = 330
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     ParentFont = False
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = 'Background'
@@ -69,6 +69,9 @@ object Form1: TForm1
         Height = 26
         Top = 100
         Width = 270
+        DefaultColorColor = clNavy
+        NoneColorColor = clNavy
+        Selected = clNavy
         ItemHeight = 20
         ParentFont = False
         TabOrder = 0
@@ -123,6 +126,9 @@ object Form1: TForm1
         Height = 26
         Top = 180
         Width = 250
+        DefaultColorColor = clYellow
+        NoneColorColor = clYellow
+        Selected = clYellow
         ItemHeight = 20
         OnChange = ColorBox_FrColorChange
         ParentFont = False
@@ -349,8 +355,9 @@ object Form1: TForm1
     Top = 720
   end
   object TimerExplosion: TTimer
+    Interval = 50
     OnTimer = TimerExplosionTimer
-    Left = 190
+    Left = 192
     Top = 720
   end
 end

@@ -64,12 +64,12 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Label6Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-
-    procedure FireworkExplosion();
     procedure ClearCanvas();
     procedure TimerExplosionTimer(Sender: TObject);
     procedure TrackBar_RangeChange(Sender: TObject);
-    procedure TrackBar_ParticleChange(Sender: TObject);
+    procedure TrackBar_ParticleChange(Sender: TObject);  
+    procedure FireworkExplosion();
+    procedure FireworkExplosionAnimation();
   private
 
   public
@@ -86,12 +86,24 @@ implementation
 { TForm1 }
 
 uses
-  Math, Windows;
+  Windows;
+
+type
+  Spark = Record
+    X, Y : Integer;
+    ColorR : Integer;
+    ColorG : Integer;
+    ColorB : Integer;
+    Rotation : Single;
+    Speed : Single;
+    Friction : Single;
+    Yvel : Single;
+    Gravity : Single;
+  end;
 
 var
   x, y : integer;
   Ty   : integer;
-  ExplosionLoop : Integer = 30;
   BgColor : string = 'clNavy';
   Particle : integer = 50;
   FrColor : string = 'clYellow';
@@ -100,6 +112,9 @@ var
   Ex_Delay : integer = 500;
   Anim_Delay : integer = 500;
   TakeOff : boolean = True;
+
+  Sparks : array [0..199] of Spark;
+  ExplodeHeight : Integer = 150;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -186,6 +201,7 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 begin
   Button_BgApplyClick(nil);
   if TakeOff then
+  begin
     y := y + Ty;
     //gambar grafik
     image1.Canvas.Brush.Color := clBlack;
@@ -193,19 +209,20 @@ begin
     image1.Canvas.Pen.Style := psSolid;
     image1.Canvas.Ellipse(x,y - 25,x + 20,y + 25);
 
-    if y <= 150 then
+    if y <= ExplodeHeight then
     begin
       y  := image1.Height;
-      Button_BgApplyClick(nil);
+      Timer1.Enabled := False;
+      ClearCanvas();
+      FireworkExplosion();
     end;
+  end
+  else
+  begin  
+    Timer1.Enabled := False;
+    FireworkExplosion();
+  end;
 
-
-
-end;
-
-procedure TForm1.FireworkExplosion();
-begin
-  TimerExplosion.Enabled := True;
 end;
 
 procedure TForm1.ClearCanvas();
@@ -215,41 +232,101 @@ begin
   Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
 end;
 
-procedure TForm1.TimerExplosionTimer(Sender: TObject);
-type
-  Particle = record
-    X, Y : Integer;
-    Radius, Rotation, Gravity, YVelocity : Single;
-    Color : array [0..2] of Integer;
-  end;
-
+procedure TForm1.FireworkExplosion();
 var
-  Particles : array [0..19] of Particle;
-  MidX, MidY : Integer;
+  MidX, Midy : Integer; 
   i, j : Integer;
 
 begin
+//  Titik tengah canvas Image1.
   MidX := Image1.Canvas.Width div 2;
   MidY := Image1.Canvas.Height div 2;
 
-
-                        
-//  TODO : Create explosion animation.
-
-//  Testing ...
-  for i:=0 to 20 do
+//  Initial settings untuk tiap partikel.
+  for i:=0 to 190 do
   begin
-    for j:=0 to 20 do
-    begin
-      Image1.Canvas.Pixels[ExplosionLoop+i,ExplosionLoop+j] := RGB(0,0,0);
-    end;
+    Sparks[i].X := Midx;
+    Sparks[i].Y := Midy - ExplodeHeight;
+
+    Sparks[i].ColorR := Random(100) + 100;
+    Sparks[i].ColorG := Random(100) + 100;
+    Sparks[i].ColorB := Random(100) + 100;
+
+    Sparks[i].Rotation := Random(360);
+    Sparks[i].Speed := Random(10) + Round(Range / 10);
+
+    Sparks[i].Friction := 0.9;
+    Sparks[i].Yvel := 0;
+    Sparks[i].Gravity := 0.1;
   end;
 
+//  Enable TTimer TimerExplosion untuk memutar animasi.
+  TimerExplosion.Enabled := True;
+end;
 
-  ExplosionLoop += 2;
+procedure TForm1.TimerExplosionTimer(Sender: TObject);
+begin                
+  ClearCanvas();
+  FireworkExplosionAnimation();
 
-  if ExplosionLoop = 30 then TimerExplosion.Enabled := False;
-//  ... TTimer.
+//  Pemberhentian animasi berdasarkan kecepatan partikel dengan index ke-0.
+  if (Sparks[0].Speed < 0.35) then
+  begin
+    TimerExplosion.Enabled := False;
+    ClearCanvas();
+  end;
+end;
+
+procedure TForm1.FireworkExplosionAnimation();
+var
+  StepX, StepY : Integer;   
+  SparkCount : Integer;
+  i : Integer;
+
+begin
+//  Jumlah partikel yang dianimasikan.
+  SparkCount := 50 + Round(Particle * 1.5);
+
+//  Penggambaran partikel ke canvas Image1.
+  for i := 0 to SparkCount do
+  begin
+    StepX := Round(Sparks[i].Speed * Cos(Sparks[i].Rotation * Pi / 180));
+    StepY := Round(Sparks[i].Speed * Sin(Sparks[i].Rotation * Pi / 180));
+    Sparks[i].X += StepX;
+    Sparks[i].Y += StepY;
+
+    Sparks[i].Speed *= Sparks[i].Friction;
+
+    Sparks[i].Yvel += Sparks[i].Gravity;
+    Sparks[i].Y += Round(Sparks[i].Yvel);
+
+//    Warna random.
+    //Image1.Canvas.Pen.Color := RGB(Sparks[i].ColorR, Sparks[i].ColorG, Sparks[i].ColorB);
+
+//    Warna input.
+    Image1.Canvas.Pen.Color := ColorBox_FrColor.Selected;
+
+  //    Main explosion.
+    Image1.Canvas.Pen.Width := 3;
+    Image1.Canvas.Pen.Style := Pssolid;
+
+    Image1.Canvas.Moveto(Sparks[i].X - Stepx, Sparks[i].Y - Stepy);
+    Image1.Canvas.Lineto(Sparks[i].X , Sparks[i].Y);
+
+    Image1.Canvas.Pen.Width := 1;
+
+  //    Explosion tambahan.
+    Image1.Canvas.Moveto(Sparks[i].X - Round(Sparks[i].Speed * Stepx) , Sparks[i].Y - Round(Sparks[i].Speed * Stepy));
+    Image1.Canvas.Lineto(Sparks[i].X - Stepx , Sparks[i].Y - Stepy);
+
+  //    Explode tambahan 2.
+    //Image1.Canvas.Pen.Style := Psdash;
+    //Image1.Canvas.Moveto(Sparks[i].X - (2*Stepx), Sparks[i].Y - (2*Stepy));
+    //Image1.Canvas.Lineto(Sparks[i].X + Round(Stepx * Sparks[i].Speed) - Stepx, Sparks[i].Y + Round(Stepy * Sparks[i].Speed) - Stepy );
+
+  //    Lingkaran explosion.
+    //Image1.Canvas.Ellipse(Sparks[i].X - Round(Sparks[i].Speed) , Sparks[i].Y - Round(Sparks[i].Speed), Sparks[i].X + Round(Sparks[i].Speed), Sparks[i].Y + Round(Sparks[i].Speed));
+  end;
 end;
 
 procedure TForm1.TrackBar_RangeChange(Sender: TObject);

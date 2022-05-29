@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 367
+  Left = 308
   Height = 568
-  Top = 34
+  Top = 25
   Width = 1096
   Caption = 'Animasi Kembang Api'
   ClientHeight = 568
@@ -54,9 +54,9 @@ object Form1: TForm1
     Height = 413
     Top = 55
     Width = 264
-    ActivePage = TabSheet1
+    ActivePage = TabSheet2
     ParentFont = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 3
     object TabSheet1: TTabSheet
       Caption = 'Background'

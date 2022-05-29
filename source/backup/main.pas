@@ -143,7 +143,7 @@ end;
 procedure TForm1.buttonPlayClick(Sender: TObject);
 begin
   TimerTakeOff.Enabled := true;
-  TimerTakeOffTimerTimer(Sender);
+  TimerTakeOffTimer(Sender);
 end;
 
 procedure TForm1.CheckBox_TakeOffChange(Sender: TObject);

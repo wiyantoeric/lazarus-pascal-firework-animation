@@ -210,8 +210,8 @@ if TakeOff then
   begin
     y := y + Ty;
     //gambar grafik
-    image1.Canvas.Brush.Color := clBlack;
-    image1.Canvas.Pen.Color := clBlack;
+    image1.Canvas.Brush.Color := ColorBox_FrColor.Selected;
+    image1.Canvas.Pen.Color := ColorBox_FrColor.Selected;
     image1.Canvas.Pen.Style := psSolid;
     image1.Canvas.Ellipse(x,y - 25,x + 20,y + 25);
 

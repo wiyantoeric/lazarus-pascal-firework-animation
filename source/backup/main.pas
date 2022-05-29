@@ -46,7 +46,7 @@ type
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
-    Timer1: TTimer;
+    TimerTakeOff: TTimer;
     TimerExplosion: TTimer;
     TrackBar_Particle: TTrackBar;
     TrackBar_Range: TTrackBar;
@@ -63,13 +63,14 @@ type
     procedure Edit3Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label6Click(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
+    procedure TimerTakeOffTimer(Sender: TObject);
     procedure ClearCanvas();
     procedure TimerExplosionTimer(Sender: TObject);
     procedure TrackBar_RangeChange(Sender: TObject);
     procedure TrackBar_ParticleChange(Sender: TObject);  
     procedure FireworkExplosion();
     procedure FireworkExplosionAnimation();
+    procedure FireworkTakeOff();
   private
 
   public
@@ -130,7 +131,7 @@ begin
   image1.Canvas.Pen.Color:=clWhite;
   image1.Canvas.Brush.Color:=clWhite;
   image1.Canvas.Rectangle(0,0,image1.Width,image1.Height);
-  Timer1.Enabled := false;
+  TimerTakeOff.Enabled := false;
 
 end;
 
@@ -141,8 +142,8 @@ end;
 
 procedure TForm1.buttonPlayClick(Sender: TObject);
 begin
-  Timer1.Enabled := true;
-  Timer1Timer(Sender);
+  TimerTakeOff.Enabled := true;
+  TimerTakeOffTimerTimer(Sender);
 end;
 
 procedure TForm1.CheckBox_TakeOffChange(Sender: TObject);
@@ -189,7 +190,7 @@ end;
 
 procedure TForm1.Button_PauseClick(Sender: TObject);
 begin
-   Timer1.Enabled := False;
+   TimerTakeOff.Enabled := False;
 end;
 
 procedure TForm1.Edit3Change(Sender: TObject);
@@ -197,10 +198,15 @@ begin
 
 end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);
+procedure TForm1.TimerTakeOffTimer(Sender: TObject);
 begin
   Button_BgApplyClick(nil);
-  if TakeOff then
+  FireworkTakeOff()
+end;
+
+procedure TForm1.FireworkTakeOff();
+begin
+if TakeOff then
   begin
     y := y + Ty;
     //gambar grafik
@@ -212,17 +218,16 @@ begin
     if y <= ExplodeHeight then
     begin
       y  := image1.Height;
-      Timer1.Enabled := False;
+      TimerTakeOff.Enabled := False;
       ClearCanvas();
       FireworkExplosion();
     end;
   end
   else
-  begin  
-    Timer1.Enabled := False;
+  begin
+    TimerTakeOff.Enabled := False;
     FireworkExplosion();
   end;
-
 end;
 
 procedure TForm1.ClearCanvas();

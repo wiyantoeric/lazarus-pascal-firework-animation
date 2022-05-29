@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -21,9 +21,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="132"/>
-        <CursorPos X="20" Y="146"/>
-        <UsageCount Value="27"/>
+        <TopLine Value="193"/>
+        <CursorPos X="41" Y="216"/>
+        <UsageCount Value="28"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -40,7 +40,7 @@
         <EditorIndex Value="1"/>
         <TopLine Value="73"/>
         <CursorPos X="14" Y="85"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit3>
       <Unit4>
@@ -49,7 +49,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="99"/>
         <CursorPos X="3" Y="66"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit4>
     </Units>

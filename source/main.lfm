@@ -336,8 +336,9 @@ object Form1: TForm1
     Top = 576
   end
   object TimerTakeOff: TTimer
+    Tag = 10
     Enabled = False
-    Interval = 750
+    Interval = 600
     OnTimer = TimerTakeOffTimer
     Left = 109
     Top = 576

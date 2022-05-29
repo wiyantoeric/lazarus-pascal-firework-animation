@@ -213,7 +213,7 @@ if TakeOff then
     image1.Canvas.Brush.Color := ColorBox_FrColor.Selected;
     image1.Canvas.Pen.Color := ColorBox_FrColor.Selected;
     image1.Canvas.Pen.Style := psSolid;
-    image1.Canvas.Ellipse(x,y - 25,x + 20,y + 25);
+    image1.Canvas.Ellipse(x,y - 25,x + 7,y + 25);
 
     if y <= ExplodeHeight then
     begin

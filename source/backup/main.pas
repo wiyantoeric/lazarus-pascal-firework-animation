@@ -239,10 +239,14 @@ end;
 
 procedure TForm1.FireworkExplosion();
 var
-  MidX, Midy : Integer; 
+  MidX, Midy : Integer;
   i, j : Integer;
+  SelectedColor : Integer;
 
 begin
+//  Mengambil warna dari ColorBox.
+  SelectedColor := ColorBox_FrColor.Selected;
+
 //  Titik tengah canvas Image1.
   MidX := Image1.Canvas.Width div 2;
   MidY := Image1.Canvas.Height div 2;
@@ -253,19 +257,27 @@ begin
     Sparks[i].X := Midx;
     Sparks[i].Y := Midy - ExplodeHeight;
 
-    Sparks[i].ColorR := Random(100) + 100;
-    Sparks[i].ColorG := Random(100) + 100;
-    Sparks[i].ColorB := Random(100) + 100;
+//    Mengacak warna input untuk kembang api.
+    Sparks[i].ColorR := Random(10) - Random(11) + Red(SelectedColor);
+    Sparks[i].ColorG := Random(9) - Random(10) + Green(SelectedColor);
+    Sparks[i].ColorB := Random(11) - Random(9) + Blue(SelectedColor);
 
+//    Color thresholding.
+    if Sparks[i].ColorR > 255 then Sparks[i].ColorR := Red(SelectedColor);
+    if Sparks[i].ColorG > 255 then Sparks[i].ColorG := Green(SelectedColor);
+    if Sparks[i].ColorB > 255 then Sparks[i].ColorB := Blue(SelectedColor);
+
+//    Mengacak arah dan kecepatan tiap partikel kembang api.
     Sparks[i].Rotation := Random(360);
     Sparks[i].Speed := Random(10) + Round(Range / 10);
 
+//    Default settings untuk tiap partikel.
     Sparks[i].Friction := 0.9;
     Sparks[i].Yvel := 0;
     Sparks[i].Gravity := 0.1;
   end;
 
-//  Enable TTimer TimerExplosion untuk memutar animasi.
+//  Mengaktifkan TTimer TimerExplosion untuk memutar animasi.
   TimerExplosion.Enabled := True;
 end;
 
@@ -305,13 +317,10 @@ begin
     Sparks[i].Yvel += Sparks[i].Gravity;
     Sparks[i].Y += Round(Sparks[i].Yvel);
 
-//    Warna random.
-    //Image1.Canvas.Pen.Color := RGB(Sparks[i].ColorR, Sparks[i].ColorG, Sparks[i].ColorB);
+//    Set warna pen.
+    Image1.Canvas.Pen.Color := RGB(Sparks[i].ColorR, Sparks[i].ColorG, Sparks[i].ColorB);
 
-//    Warna input.
-    Image1.Canvas.Pen.Color := ColorBox_FrColor.Selected;
-
-  //    Main explosion.
+//    Main explosion.
     Image1.Canvas.Pen.Width := 3;
     Image1.Canvas.Pen.Style := Pssolid;
 
@@ -320,17 +329,13 @@ begin
 
     Image1.Canvas.Pen.Width := 1;
 
-  //    Explosion tambahan.
+//    Explosion tambahan.
     Image1.Canvas.Moveto(Sparks[i].X - Round(Sparks[i].Speed * Stepx) , Sparks[i].Y - Round(Sparks[i].Speed * Stepy));
     Image1.Canvas.Lineto(Sparks[i].X - Stepx , Sparks[i].Y - Stepy);
 
-  //    Explode tambahan 2.
-    //Image1.Canvas.Pen.Style := Psdash;
-    //Image1.Canvas.Moveto(Sparks[i].X - (2*Stepx), Sparks[i].Y - (2*Stepy));
-    //Image1.Canvas.Lineto(Sparks[i].X + Round(Stepx * Sparks[i].Speed) - Stepx, Sparks[i].Y + Round(Stepy * Sparks[i].Speed) - Stepy );
-
-  //    Lingkaran explosion.
-    //Image1.Canvas.Ellipse(Sparks[i].X - Round(Sparks[i].Speed) , Sparks[i].Y - Round(Sparks[i].Speed), Sparks[i].X + Round(Sparks[i].Speed), Sparks[i].Y + Round(Sparks[i].Speed));
+//    Lingkaran explosion.
+    Image1.canvas.brush.color := RGB(Sparks[i].ColorR, Sparks[i].ColorG, Sparks[i].ColorB);
+    Image1.Canvas.Ellipse(Sparks[i].X - Round(Sparks[i].Speed) , Sparks[i].Y - Round(Sparks[i].Speed), Sparks[i].X + Round(Sparks[i].Speed), Sparks[i].Y + Round(Sparks[i].Speed));
   end;
 end;
 

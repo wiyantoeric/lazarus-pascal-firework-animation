@@ -200,7 +200,7 @@ end;
 
 procedure TForm1.TimerTakeOffTimer(Sender: TObject);
 begin
-  Button_BgApplyClick(nil);
+  ClearCanvas();
   FireworkTakeOff()
 end;
 

@@ -240,7 +240,7 @@ end;
 procedure TForm1.FireworkExplosion();
 var
   MidX, Midy : Integer;
-  i, j : Integer;
+  i : Integer;
   SelectedColor : Integer;
 
 begin
@@ -252,7 +252,7 @@ begin
   MidY := Image1.Canvas.Height div 2;
 
 //  Initial settings untuk tiap partikel.
-  for i:=0 to 190 do
+  for i:=0 to 199 do
   begin
     Sparks[i].X := Midx;
     Sparks[i].Y := Midy - ExplodeHeight;

@@ -115,7 +115,7 @@ var
   TakeOff : boolean = True;
 
   Sparks : array [0..199] of Spark;
-  ExplodeHeight : Integer = 150;
+  ExplodeHeight : Integer = 100;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -240,7 +240,7 @@ end;
 procedure TForm1.FireworkExplosion();
 var
   MidX, Midy : Integer;
-  i, j : Integer;
+  i : Integer;
   SelectedColor : Integer;
 
 begin
@@ -252,7 +252,7 @@ begin
   MidY := Image1.Canvas.Height div 2;
 
 //  Initial settings untuk tiap partikel.
-  for i:=0 to 190 do
+  for i:=0 to 199 do
   begin
     Sparks[i].X := Midx;
     Sparks[i].Y := Midy - ExplodeHeight;
@@ -334,8 +334,8 @@ begin
     Image1.Canvas.Lineto(Sparks[i].X - Stepx , Sparks[i].Y - Stepy);
 
 //    Lingkaran explosion.
-    Image1.canvas.brush.color := RGB(Sparks[i].ColorR, Sparks[i].ColorG, Sparks[i].ColorB);
-    Image1.Canvas.Ellipse(Sparks[i].X - Round(Sparks[i].Speed) , Sparks[i].Y - Round(Sparks[i].Speed), Sparks[i].X + Round(Sparks[i].Speed), Sparks[i].Y + Round(Sparks[i].Speed));
+    //Image1.canvas.brush.color := RGB(Sparks[i].ColorR, Sparks[i].ColorG, Sparks[i].ColorB);
+    //Image1.Canvas.Ellipse(Sparks[i].X - Round(Sparks[i].Speed) , Sparks[i].Y - Round(Sparks[i].Speed), Sparks[i].X + Round(Sparks[i].Speed), Sparks[i].Y + Round(Sparks[i].Speed));
   end;
 end;
 

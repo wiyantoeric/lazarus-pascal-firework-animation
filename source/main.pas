@@ -115,7 +115,7 @@ var
   TakeOff : boolean = True;
 
   Sparks : array [0..199] of Spark;
-  ExplodeHeight : Integer = 150;
+  ExplodeHeight : Integer = 100;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -215,7 +215,7 @@ if TakeOff then
     image1.Canvas.Pen.Style := psSolid;
     image1.Canvas.Ellipse(x,y - 25,x + 7,y + 25);
 
-    if y <= ExplodeHeight then
+    if y < ExplodeHeight then
     begin
       y  := image1.Height;
       TimerTakeOff.Enabled := False;

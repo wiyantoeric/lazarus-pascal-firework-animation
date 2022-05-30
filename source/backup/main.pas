@@ -200,7 +200,7 @@ end;
 
 procedure TForm1.TimerTakeOffTimer(Sender: TObject);
 begin
-  Button_BgApplyClick(nil);
+  ClearCanvas();
   FireworkTakeOff()
 end;
 
@@ -215,7 +215,7 @@ if TakeOff then
     image1.Canvas.Pen.Style := psSolid;
     image1.Canvas.Ellipse(x,y - 25,x + 7,y + 25);
 
-    if y <= ExplodeHeight then
+    if y < ExplodeHeight then
     begin
       y  := image1.Height;
       TimerTakeOff.Enabled := False;

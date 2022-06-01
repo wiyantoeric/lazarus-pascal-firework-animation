@@ -34,20 +34,20 @@ object Form1: TForm1
   object PageControl2: TPageControl
     Left = 1370
     Height = 516
-    Top = 70
+    Top = 80
     Width = 330
-    ActivePage = TabSheet3
+    ActivePage = TabSheet2
     ParentFont = False
-    TabIndex = 2
+    TabIndex = 1
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'Background'
-      ClientHeight = 385
-      ClientWidth = 256
+      ClientHeight = 483
+      ClientWidth = 322
       ParentFont = False
       object ColorBox_BgColor: TColorBox
         Left = 20
-        Height = 22
+        Height = 26
         Top = 100
         Width = 270
         DefaultColorColor = clNavy
@@ -69,9 +69,9 @@ object Form1: TForm1
       end
       object Label1: TLabel
         Left = 20
-        Height = 15
+        Height = 20
         Top = 70
-        Width = 80
+        Width = 101
         Caption = 'Color Selection'
         ParentColor = False
         ParentFont = False
@@ -96,7 +96,7 @@ object Form1: TForm1
       object ColorBox_FrColor: TColorBox
         Left = 30
         Height = 26
-        Top = 180
+        Top = 168
         Width = 250
         DefaultColorColor = clYellow
         NoneColorColor = clYellow
@@ -109,7 +109,7 @@ object Form1: TForm1
       object Label5: TLabel
         Left = 30
         Height = 20
-        Top = 150
+        Top = 136
         Width = 101
         Caption = 'Color Selection'
         ParentColor = False

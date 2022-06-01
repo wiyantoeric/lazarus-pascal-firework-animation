@@ -432,7 +432,7 @@ begin
     TimerExplosion.Enabled := False;
 
     ClearCanvas();
-    TimerDelay.Interval := Anim_Delay;
+    TimerAnimDelay.Interval := Anim_Delay;
     TimerAnimDelay.Enabled := True;
 
     ClearCanvas();

@@ -1,29 +1,30 @@
 object Form1: TForm1
-  Left = 247
-  Height = 560
-  Top = 94
-  Width = 1096
+  Left = 207
+  Height = 781
+  Top = 113
+  Width = 1741
   Caption = 'Animasi Kembang Api'
-  ClientHeight = 560
-  ClientWidth = 1096
+  ClientHeight = 781
+  ClientWidth = 1741
+  DesignTimePPI = 120
   OnCreate = FormCreate
-  LCLVersion = '2.2.0.1'
+  LCLVersion = '2.0.12.0'
   Visible = True
   object Button_Play: TButton
-    Left = 272
-    Height = 25
-    Top = 568
-    Width = 75
+    Left = 340
+    Height = 31
+    Top = 710
+    Width = 94
     Caption = 'Play'
     OnClick = buttonPlayClick
     ParentFont = False
     TabOrder = 0
   end
   object Button_Pause: TButton
-    Left = 504
-    Height = 25
-    Top = 568
-    Width = 75
+    Left = 630
+    Height = 31
+    Top = 710
+    Width = 94
     Caption = 'Pause'
     Enabled = False
     OnClick = Button_PauseClick
@@ -31,10 +32,10 @@ object Form1: TForm1
     TabOrder = 1
   end
   object PageControl2: TPageControl
-    Left = 1096
-    Height = 413
-    Top = 56
-    Width = 264
+    Left = 1370
+    Height = 516
+    Top = 70
+    Width = 330
     ActivePage = TabSheet3
     ParentFont = False
     TabIndex = 2
@@ -45,149 +46,170 @@ object Form1: TForm1
       ClientWidth = 256
       ParentFont = False
       object ColorBox_BgColor: TColorBox
-        Left = 16
+        Left = 20
         Height = 22
-        Top = 80
-        Width = 216
+        Top = 100
+        Width = 270
         DefaultColorColor = clNavy
         NoneColorColor = clNavy
         Selected = clNavy
-        ItemHeight = 16
+        ItemHeight = 20
         ParentFont = False
         TabOrder = 0
       end
       object Button_BgApply: TButton
-        Left = 133
-        Height = 25
-        Top = 240
-        Width = 75
+        Left = 166
+        Height = 31
+        Top = 300
+        Width = 94
         Caption = 'Apply'
         OnClick = Button_BgApplyClick
         ParentFont = False
         TabOrder = 1
       end
       object Label1: TLabel
-        Left = 16
+        Left = 20
         Height = 15
-        Top = 56
+        Top = 70
         Width = 80
         Caption = 'Color Selection'
+        ParentColor = False
         ParentFont = False
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Firework'
-      ClientHeight = 385
-      ClientWidth = 256
+      ClientHeight = 483
+      ClientWidth = 322
       ParentFont = False
       object TrackBar_Particle: TTrackBar
-        Left = 24
-        Height = 25
-        Top = 51
-        Width = 205
+        Left = 32
+        Height = 31
+        Top = 64
+        Width = 216
         Max = 100
         OnChange = TrackBar_ParticleChange
         Position = 50
         ParentFont = False
         TabOrder = 0
       end
-      object Label4: TLabel
-        Left = 232
-        Height = 15
-        Top = 51
-        Width = 22
-        Caption = '50%'
-        ParentFont = False
-      end
       object ColorBox_FrColor: TColorBox
-        Left = 24
-        Height = 22
-        Top = 144
-        Width = 200
+        Left = 30
+        Height = 26
+        Top = 180
+        Width = 250
         DefaultColorColor = clYellow
         NoneColorColor = clYellow
         Selected = clYellow
-        ItemHeight = 16
+        ItemHeight = 20
         OnChange = ColorBox_FrColorChange
         ParentFont = False
         TabOrder = 1
       end
       object Label5: TLabel
-        Left = 24
-        Height = 15
-        Top = 120
-        Width = 80
+        Left = 30
+        Height = 20
+        Top = 150
+        Width = 101
         Caption = 'Color Selection'
+        ParentColor = False
         ParentFont = False
       end
       object Label7: TLabel
-        Left = 26
-        Height = 15
-        Top = 32
-        Width = 44
+        Left = 32
+        Height = 20
+        Top = 40
+        Width = 54
         Caption = 'Particles'
+        ParentColor = False
         ParentFont = False
       end
       object Label8: TLabel
-        Left = 26
-        Height = 15
-        Top = 192
-        Width = 33
+        Left = 32
+        Height = 20
+        Top = 240
+        Width = 42
         Caption = 'Range'
+        ParentColor = False
         ParentFont = False
       end
       object Button_FireApply: TButton
-        Left = 152
-        Height = 25
-        Top = 280
-        Width = 75
+        Left = 190
+        Height = 31
+        Top = 350
+        Width = 94
         Caption = 'Apply'
         OnClick = Button_FireApplyClick
         ParentFont = False
         TabOrder = 2
       end
-      object Label6: TLabel
-        Left = 232
-        Height = 15
-        Top = 224
-        Width = 22
-        Caption = '50%'
-        ParentFont = False
-        OnClick = Label6Click
-      end
       object TrackBar_Range: TTrackBar
-        Left = 26
-        Height = 25
-        Top = 216
-        Width = 205
+        Left = 32
+        Height = 31
+        Top = 270
+        Width = 216
         Max = 100
         OnChange = TrackBar_RangeChange
         Position = 50
         ParentFont = False
         TabOrder = 3
       end
+      object Edit_Particle: TEdit
+        Left = 256
+        Height = 28
+        Top = 64
+        Width = 28
+        OnChange = Edit_ParticleChange
+        TabOrder = 4
+        Text = '50'
+      end
+      object Edit_Range: TEdit
+        Left = 256
+        Height = 28
+        Top = 270
+        Width = 32
+        OnChange = Edit_RangeChange
+        TabOrder = 5
+        Text = '50'
+      end
+      object Label_Particle: TLabel
+        Left = 296
+        Height = 20
+        Top = 72
+        Width = 12
+        Caption = '%'
+        ParentColor = False
+      end
+      object Label_Range: TLabel
+        Left = 296
+        Height = 20
+        Top = 278
+        Width = 12
+        Caption = '%'
+        ParentColor = False
+      end
     end
     object TabSheet3: TTabSheet
       Caption = 'Animation'
-      ClientHeight = 385
-      ClientWidth = 256
+      ClientHeight = 483
+      ClientWidth = 322
       ParentFont = False
       object Button_AnimApply: TButton
-        Left = 160
-        Height = 25
-        Top = 304
-        Width = 75
+        Left = 200
+        Height = 31
+        Top = 380
+        Width = 94
         Caption = 'Apply'
         OnClick = Button_AnimApplyClick
         ParentFont = False
         TabOrder = 0
       end
       object ComboBox_Speed: TComboBox
-        Left = 26
-        Height = 23
-        Top = 54
-        Width = 100
-        ItemHeight = 15
+        Left = 32
+        Height = 28
+        Top = 68
+        Width = 125
+        ItemHeight = 20
         ItemIndex = 1
         Items.Strings = (
           '0.5x'
@@ -201,18 +223,19 @@ object Form1: TForm1
         Text = '1x'
       end
       object Label9: TLabel
-        Left = 26
-        Height = 15
-        Top = 32
-        Width = 32
+        Left = 32
+        Height = 20
+        Top = 40
+        Width = 42
         Caption = 'Speed'
+        ParentColor = False
         ParentFont = False
       end
       object TrackBar_Ex_Delay: TTrackBar
-        Left = 26
-        Height = 25
-        Top = 125
-        Width = 160
+        Left = 32
+        Height = 31
+        Top = 156
+        Width = 200
         Max = 5000
         Min = 1
         OnChange = TrackBar_Ex_DelayChange
@@ -221,10 +244,10 @@ object Form1: TForm1
         TabOrder = 2
       end
       object Edit_Ex: TEdit
-        Left = 192
-        Height = 23
-        Top = 125
-        Width = 35
+        Left = 240
+        Height = 28
+        Top = 156
+        Width = 44
         OnChange = Edit_ExChange
         ParentFont = False
         TabOrder = 3
@@ -232,46 +255,49 @@ object Form1: TForm1
         TextHint = '0 miliseconds'
       end
       object Label10: TLabel
-        Left = 26
-        Height = 15
-        Top = 99
-        Width = 74
+        Left = 32
+        Height = 20
+        Top = 124
+        Width = 96
         Caption = 'Explode Delay'
+        ParentColor = False
         ParentFont = False
       end
-      object Label11: TLabel
-        Left = 230
-        Height = 15
-        Top = 128
-        Width = 16
+      object Label_Ex: TLabel
+        Left = 288
+        Height = 20
+        Top = 160
+        Width = 19
         Caption = 'ms'
+        ParentColor = False
         ParentFont = False
       end
-      object Label12: TLabel
-        Left = 230
-        Height = 15
-        Top = 202
-        Width = 16
+      object Label_Anim: TLabel
+        Left = 288
+        Height = 20
+        Top = 252
+        Width = 19
         Caption = 'ms'
+        ParentColor = False
         ParentFont = False
       end
       object TrackBar_Anim_Delay: TTrackBar
-        Left = 26
-        Height = 25
-        Top = 198
-        Width = 160
+        Left = 32
+        Height = 31
+        Top = 248
+        Width = 200
         Max = 5000
         Min = 1
         OnChange = TrackBar_Anim_DelayChange
-        Position = 500
+        Position = 1
         ParentFont = False
         TabOrder = 4
       end
       object Edit_Anim: TEdit
-        Left = 192
-        Height = 23
-        Top = 198
-        Width = 35
+        Left = 240
+        Height = 28
+        Top = 248
+        Width = 44
         OnChange = Edit_AnimChange
         ParentFont = False
         TabOrder = 5
@@ -279,29 +305,30 @@ object Form1: TForm1
         TextHint = '0 miliseconds'
       end
       object Label13: TLabel
-        Left = 26
-        Height = 15
-        Top = 173
-        Width = 88
+        Left = 32
+        Height = 20
+        Top = 216
+        Width = 111
         Caption = 'Animation Delay'
+        ParentColor = False
         ParentFont = False
       end
     end
   end
   object StaticText1: TStaticText
-    Left = 1096
-    Height = 17
-    Top = 33
-    Width = 65
+    Left = 1370
+    Height = 21
+    Top = 41
+    Width = 81
     Caption = 'Settings'
     ParentFont = False
     TabOrder = 3
   end
   object CheckBox_TakeOff: TCheckBox
-    Left = 960
-    Height = 19
-    Top = 552
-    Width = 112
+    Left = 1200
+    Height = 24
+    Top = 690
+    Width = 140
     Caption = 'Firework Take Off'
     Checked = True
     OnChange = CheckBox_TakeOffChange
@@ -310,44 +337,49 @@ object Form1: TForm1
     TabOrder = 4
   end
   object Button_Screenshot: TButton
-    Left = 736
-    Height = 25
-    Top = 568
-    Width = 75
+    Left = 920
+    Height = 31
+    Top = 710
+    Width = 94
     Caption = 'Screenshot'
     OnClick = Button_ScreenshotClick
     ParentFont = False
     TabOrder = 5
   end
   object Image1: TImage
-    Left = 16
+    Left = 20
     Height = 512
-    Top = 24
+    Top = 30
     Width = 1065
     AutoSize = True
   end
   object SavePictureDialog1: TSavePictureDialog
-    Left = 56
-    Top = 576
+    Left = 24
+    Top = 720
   end
   object TimerTakeOff: TTimer
     Tag = 10
     Enabled = False
     Interval = 600
     OnTimer = TimerTakeOffTimer
-    Left = 109
-    Top = 576
+    Left = 80
+    Top = 720
   end
   object TimerExplosion: TTimer
     Interval = 100
     OnTimer = TimerExplosionTimer
-    Left = 154
-    Top = 576
+    Left = 136
+    Top = 720
   end
   object TimerDelay: TTimer
     Enabled = False
     OnTimer = TimerDelayTimer
     Left = 192
-    Top = 576
+    Top = 720
+  end
+  object TimerAnimDelay: TTimer
+    OnTimer = TimerAnimDelayTimer
+    Left = 248
+    Top = 720
   end
 end

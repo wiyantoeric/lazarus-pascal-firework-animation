@@ -25,26 +25,29 @@ type
     ColorBox_BgColor: TColorBox;
     ColorBox_FrColor: TColorBox;
     ComboBox_Speed: TComboBox;
+    Edit_Particle: TEdit;
+    Edit_Range: TEdit;
     Edit_Ex: TEdit;
     Edit_Anim: TEdit;
     Image1: TImage;
     Label1: TLabel;
     Label10: TLabel;
-    Label11: TLabel;
-    Label12: TLabel;
+    Label_Ex: TLabel;
+    Label_Anim: TLabel;
     Label13: TLabel;
-    Label4: TLabel;
+    Label_Particle: TLabel;
     Label5: TLabel;
-    Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
+    Label_Range: TLabel;
     PageControl2: TPageControl;
     SavePictureDialog1: TSavePictureDialog;
     StaticText1: TStaticText;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
+    TimerAnimDelay: TTimer;
     TimerDelay: TTimer;
     TimerTakeOff: TTimer;
     TimerExplosion: TTimer;
@@ -64,8 +67,11 @@ type
     procedure Edit3Change(Sender: TObject);
     procedure Edit_AnimChange(Sender: TObject);
     procedure Edit_ExChange(Sender: TObject);
+    procedure Edit_ParticleChange(Sender: TObject);
+    procedure Edit_RangeChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Label6Click(Sender: TObject);
+    procedure TimerAnimDelayTimer(Sender: TObject);
     procedure TimerDelayTimer(Sender: TObject);
     procedure TimerTakeOffTimer(Sender: TObject);
     procedure ClearCanvas();
@@ -123,7 +129,8 @@ var
   Sparks : array [0..199] of Spark;
   ExplodeHeight : Integer = 100;
   isPlaying : boolean = False;
-  dis : integer = 1;
+  ExDelayCounter : integer = 1;
+  AnimDelayCounter : Integer = 1;
 
 procedure TForm1.FormCreate(Sender: TObject);
 var
@@ -148,17 +155,30 @@ begin
 
 end;
 
+procedure TForm1.TimerAnimDelayTimer(Sender: TObject);
+
+begin
+  if AnimDelayCounter = 2 then
+  begin
+    TimerTakeOff.Enabled := isPlaying;
+    TimerAnimDelay.Enabled := False;
+    AnimDelayCounter := 1;
+  end;
+
+  AnimDelayCounter += 1;
+end;
+
 procedure TForm1.TimerDelayTimer(Sender: TObject);
 
 begin
-  if dis = 2 then
+  if ExDelayCounter = 2 then
   begin
     FireworkExplosion();
     TimerDelay.Enabled := False;
-    dis := 1;
+    ExDelayCounter := 1;
   end;
 
-  dis += 1;
+  ExDelayCounter += 1;
 end;
 
 procedure TForm1.buttonPlayClick(Sender: TObject);
@@ -243,12 +263,12 @@ begin
     if StrToInt(Edit_Anim.Text) > 5000 then
         Edit_Anim.Text := '5000';
 
-    if StrToInt(Edit_Anim.Text) < 0 then
-        Edit_Anim.Text := '0';
+    if StrToInt(Edit_Anim.Text) < 1 then
+        Edit_Anim.Text := '1';
 
     TrackBar_Anim_Delay.Position := StrToInt(Edit_Anim.Text);
   except
-    on e:Exception do ShowAlertDialog('Harap Masukan Angka');
+    on e:Exception do ShowAlertDialog('Harap Masukan Angka 1 - 5000');
   end;
 
 end;
@@ -259,12 +279,42 @@ begin
     if StrToInt(Edit_Ex.Text) > 5000 then
         Edit_Ex.Text := '5000';
 
-    if StrToInt(Edit_Ex.Text) < 0 then
-        Edit_Ex.Text := '0';
+    if StrToInt(Edit_Ex.Text) < 1 then
+        Edit_Ex.Text := '1';
 
     TrackBar_Ex_Delay.Position := StrToInt(Edit_Ex.Text);
   except
-    on e:Exception do ShowAlertDialog('Harap Masukan Angka');
+    on e:Exception do ShowAlertDialog('Harap Masukan Angka 1 - 5000');
+  end;
+end;
+
+procedure TForm1.Edit_ParticleChange(Sender: TObject);
+begin
+  try
+    if StrToInt(Edit_Particle.Text) > 100 then
+        Edit_Particle.Text := '100';
+
+    if StrToInt(Edit_Particle.Text) < 0 then
+        Edit_Particle.Text := '0';
+
+    TrackBar_Particle.Position := StrToInt(Edit_Particle.Text);
+  except
+    on E : Exception do ShowAlertDialog('Harap Masukan Angka 0 - 100');
+  end;
+end;
+
+procedure TForm1.Edit_RangeChange(Sender: TObject);
+begin
+  try
+    if StrToInt(Edit_Range.Text) > 100 then
+        Edit_Range.Text := '100';
+
+    if StrToInt(Edit_Range.Text) < 0 then
+        Edit_Range.Text := '0';
+
+    TrackBar_Range.Position := StrToInt(Edit_Range.Text);
+  except
+    on E : Exception do ShowAlertDialog('Harap Masukan Angka 0 - 100');
   end;
 end;
 
@@ -303,9 +353,9 @@ if TakeOff then
     end;
   end
 else
-  begin
-    ClearCanvas();
+  begin                     
     TimerTakeOff.Enabled := False;
+    ClearCanvas();
     TimerDelay.Interval := Ex_Delay;
     TimerDelay.Enabled := True;
   end;
@@ -321,7 +371,7 @@ end;
 procedure TForm1.FireworkExplosion();
 var
   MidX, Midy : Integer;
-  i, j : Integer;
+  i : Integer;
   SelectedColor : Integer;
 
 begin
@@ -380,8 +430,12 @@ begin
   if (Sparks[0].Speed < 0.35) then
   begin
     TimerExplosion.Enabled := False;
+
     ClearCanvas();
-    TimerTakeOff.Enabled := isPlaying;
+    TimerDelay.Interval := Anim_Delay;
+    TimerAnimDelay.Enabled := True;
+
+    ClearCanvas();
   end;
 end;
 
@@ -442,12 +496,12 @@ end;
 
 procedure TForm1.TrackBar_RangeChange(Sender: TObject);
 begin
-
+  Edit_Range.Text := IntToStr(TrackBar_Range.Position);
 end;
 
 procedure TForm1.TrackBar_ParticleChange(Sender: TObject);
-begin
-
+begin  
+  Edit_Particle.Text := IntToStr(TrackBar_Particle.Position);
 end;
 
 end.

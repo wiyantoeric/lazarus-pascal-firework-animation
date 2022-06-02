@@ -17,7 +17,6 @@ type
     Button_Play: TButton;
     buttonPlay: TButton;
     Button_Pause: TButton;
-    Button_BgApply: TButton;
     Button_FireApply: TButton;
     Button_AnimApply: TButton;
     Button_Screenshot: TButton;
@@ -59,12 +58,8 @@ type
     procedure Button_ScreenshotClick(Sender: TObject);
     procedure Button_AnimApplyClick(Sender: TObject);
     procedure Button_FireApplyClick(Sender: TObject);
-    procedure Button_BgApplyClick(Sender: TObject);
     procedure buttonPlayClick(Sender: TObject);
     procedure CheckBox_TakeOffChange(Sender: TObject);
-    procedure ColorBox_FrColorChange(Sender: TObject);
-    procedure ComboBox_SpeedChange(Sender: TObject);
-    procedure Edit3Change(Sender: TObject);
     procedure Edit_AnimChange(Sender: TObject);
     procedure Edit_ExChange(Sender: TObject);
     procedure Edit_ParticleChange(Sender: TObject);
@@ -195,23 +190,6 @@ begin
   TakeOff := CheckBox_TakeOff.Checked;
 end;
 
-procedure TForm1.ColorBox_FrColorChange(Sender: TObject);
-begin
-
-end;
-
-procedure TForm1.ComboBox_SpeedChange(Sender: TObject);
-begin
-
-end;
-
-procedure TForm1.Button_BgApplyClick(Sender: TObject);
-begin
-  Image1.Canvas.Brush.Color := ColorBox_BgColor.Selected;
-  Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
-  Image1.Canvas.FillRect(0, 0, Image1.Canvas.Width, Image1.Canvas.Height);
-end;
-
 procedure TForm1.Button_FireApplyClick(Sender: TObject);
 begin
   Particle := TrackBar_Particle.Position;
@@ -224,7 +202,6 @@ begin
   Speed := ComboBox_Speed.ItemIndex;
   Ex_Delay := TrackBar_Ex_Delay.Position;
   Anim_Delay := TrackBar_Anim_Delay.Position;
-
 end;
 
 procedure TForm1.Button_ScreenshotClick(Sender: TObject);
@@ -245,11 +222,6 @@ begin
   Button_Play.Enabled := True;
   TimerTakeOff.Enabled := False;
   TimerExplosion.Enabled := False;
-end;
-
-procedure TForm1.Edit3Change(Sender: TObject);
-begin
-
 end;
 
 procedure TForm1.ShowAlertDialog(Message: String);
